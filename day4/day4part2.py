@@ -60,6 +60,7 @@ def check_columns(board):
 def draw_nums():
     last_winner = None
     for num in draw:
+        winners = []
         picked_nums.append(num)
 
         for board in board_array:
@@ -67,9 +68,12 @@ def draw_nums():
             if row_status != True:
                 col_status = check_columns(board)
             if row_status == True or col_status == True:
-                board_array.remove(board)
+                winners.append(board)
                 last_winner = board
         
+        for winner in winners:
+            board_array.remove(winner)
+
         if len(board_array) == 0:
             return last_winner
 
